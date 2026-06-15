@@ -20,10 +20,11 @@ export const queryTool = {
     if (args.buyer) {
       result = allOrders.filter(o => o.buyer.includes(args.buyer));
     }
-    return { 
+    const responsePayload = { 
       status: 'success', 
       message: `查询到 ${result.length} 条记录。`,
       data: result.slice(-10) 
     };
+    return { content: [{ type: "text", text: JSON.stringify(responsePayload) }], details: responsePayload };
   }
 };

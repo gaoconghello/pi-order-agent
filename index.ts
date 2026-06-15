@@ -20,10 +20,12 @@ async function main() {
   console.log("System prompt fetched successfully");
   
   // 4. Gateway: 模拟读取到的一段微信群聊天记录
-  // 注意：需要符合 AgentMessage 格式，此处模拟两次 user 发言
+  // 注意：需要符合 AgentMessage 格式，此处模拟多次发言，覆盖下单、退货、查询意图
   const rawMessages: any[] = [
     { role: "user", content: "李四: 老板，给我发10件货。", timestamp: Date.now() },
-    { role: "user", content: "李四: 哎等一下，改成12件吧。", timestamp: Date.now() + 1000 }
+    { role: "user", content: "李四: 哎等一下，改成12件吧。", timestamp: Date.now() + 1000 },
+    { role: "user", content: "张三: 老板，昨天送来的那批货质量不行，退货3件啊。", timestamp: Date.now() + 2000 },
+    { role: "user", content: "王五: 帮我查下我们这个群今天订了些什么？", timestamp: Date.now() + 3000 }
   ];
 
   // 2 & 3. 组装真实的 Pi Agent 实例 (使用最新的 API 规范)

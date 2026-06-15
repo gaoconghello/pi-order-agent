@@ -42,7 +42,9 @@ pi-order-agent/
    ```bash
    cp .env.example .env
    ```
-   *注意：代码默认读取环境变量 `DEEPSEEK_API_KEY`（您也可以在 `index.ts` 中根据您接入的模型修改为 `OPENAI_API_KEY` 等）。*
+   *注意与密钥自动匹配规则：*
+   * **OpenAI 兼容模式（目前默认）**：在 [index.ts](file:///D:/Project/pi-order-agent/index.ts) 中声明 `provider` 为 `"openai"` 时，底层的 AI 适配器会自动寻找环境变量 `OPENAI_API_KEY`。
+   * **原生 DeepSeek 模式**：如果在 [index.ts](file:///D:/Project/pi-order-agent/index.ts) 中将 `provider` 切换为 `"deepseek"`，底层的 AI 适配器会自动寻找环境变量 `DEEPSEEK_API_KEY`（此模式下无需手动指定 `baseUrl`）。
 
 3. **初始化数据库**
    推送 Drizzle Schema 到本地 SQLite 数据库文件（会自动在根目录生成 db 文件）：
